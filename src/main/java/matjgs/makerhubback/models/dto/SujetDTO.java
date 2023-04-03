@@ -13,7 +13,7 @@ public class SujetDTO implements Serializable {
     private final Long id;
     private final String titre;
     private final String description;
-    private final UtilisateurDTO madeBy;
+//    private final UtilisateurDTO madeBy;
     private final LocalDate dateCreation;
     private final Set<ArgumentationDTO> argumentations;
 
@@ -25,7 +25,7 @@ public class SujetDTO implements Serializable {
                 entity.getId(),
                 entity.getTitre(),
                 entity.getDescription(),
-                UtilisateurDTO.toDto(entity.getMadeBy()),
+//                UtilisateurDTO.toDto(entity.getMadeBy()),
                 entity.getDateCreation(),
                 entity.getArgumentations().stream()
                         .map(ArgumentationDTO::toDto)

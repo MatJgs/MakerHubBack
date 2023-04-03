@@ -30,7 +30,7 @@ public class Sujet {
     @OneToMany
     private Set<Argumentation> argumentations = new HashSet<>();
 
-    @ManyToOne
-    @JoinColumn(name = "made_by_id", nullable = false)
-    private Utilisateur madeBy;
+//    @ManyToOne
+//    @JoinColumn(name = "made_by_id", nullable = false)
+//    private Utilisateur madeBy;
 }
