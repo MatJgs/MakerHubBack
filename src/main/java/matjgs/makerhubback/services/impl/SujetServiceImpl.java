@@ -8,7 +8,9 @@ import matjgs.makerhubback.repository.SujetRepository;
 import matjgs.makerhubback.services.SujetService;
 import org.springframework.stereotype.Service;
 
+import java.util.HashSet;
 import java.util.LinkedHashSet;
+import java.util.List;
 
 @Service
 public class SujetServiceImpl implements SujetService {
@@ -35,10 +37,19 @@ public class SujetServiceImpl implements SujetService {
     public void create(SujetForm form) {
         Sujet sujet = form.toEntity();
 
-        sujet.setArgumentations(
-                new LinkedHashSet<>(argumentationRepository.findAllById(form.getArgumentsId()))
-        );
+        if (form.getArgumentsId()!=null){
 
+            sujet.setArgumentations(
+                new HashSet<>(argumentationRepository.findAllById(form.getArgumentsId()))
+            );
+        }
         sujetRepository.save(sujet);
+    }
+
+    @Override
+    public List<SujetDTO> getAll() {
+        return sujetRepository.findAll().stream()
+                .map(SujetDTO::toDto)
+                .toList();
     }
 }

@@ -25,6 +25,7 @@ public class Argumentation {
     @Column(name = "argument",nullable = false)
     private String argument;
 
-    @Column(name = "auteur",nullable = false)
-    private String nom;
+    @ManyToOne
+    @JoinColumn(name = "auteur_id", nullable = false)
+    private Utilisateur auteurId;
 }

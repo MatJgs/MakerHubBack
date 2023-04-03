@@ -7,7 +7,7 @@ import lombok.Setter;
 @Entity
 @Table(name = "\"user\"")
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-@DiscriminatorColumn(name = "role")
+//@DiscriminatorColumn(name = "role")
 @Getter
 @Setter
 public class Utilisateur {
@@ -16,8 +16,8 @@ public class Utilisateur {
     @Column(name = "utilisateur_id")
     private Long id;
 
-    @Column(name = "role", nullable = false, insertable = false, updatable = false)
-    private String role;
+//    @Column(name = "role", nullable = false, insertable = false, updatable = false)
+//    private String role;
     @Column(nullable = false, unique = true)
     private String login;
     @Column(nullable = false)

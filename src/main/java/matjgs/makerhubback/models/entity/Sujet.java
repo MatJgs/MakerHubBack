@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.time.LocalDate;
+import java.util.HashSet;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
@@ -27,7 +28,7 @@ public class Sujet {
 
 
     @OneToMany
-    private Set<Argumentation> argumentations = new LinkedHashSet<>();
+    private Set<Argumentation> argumentations = new HashSet<>();
 
     @ManyToOne
     @JoinColumn(name = "made_by_id", nullable = false)
