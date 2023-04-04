@@ -5,6 +5,7 @@ import matjgs.makerhubback.models.entity.Sujet;
 import matjgs.makerhubback.models.form.SujetForm;
 import matjgs.makerhubback.repository.ArgumentationRepository;
 import matjgs.makerhubback.repository.SujetRepository;
+import matjgs.makerhubback.repository.UtilisateurRepository;
 import matjgs.makerhubback.services.SujetService;
 import org.springframework.stereotype.Service;
 
@@ -18,10 +19,14 @@ public class SujetServiceImpl implements SujetService {
     private final SujetRepository sujetRepository;
     private final ArgumentationRepository argumentationRepository;
 
+    private final UtilisateurRepository utilisateurRepository;
+
     public SujetServiceImpl(SujetRepository sujetRepository,
-                            ArgumentationRepository argumentationRepository) {
+                            ArgumentationRepository argumentationRepository,
+                            UtilisateurRepository utilisateurRepository) {
         this.sujetRepository = sujetRepository;
         this.argumentationRepository = argumentationRepository;
+        this.utilisateurRepository=utilisateurRepository;
     }
 
     @Override
@@ -36,6 +41,8 @@ public class SujetServiceImpl implements SujetService {
     @Override
     public void create(SujetForm form) {
         Sujet sujet = form.toEntity();
+
+        sujet.setSujetBy(utilisateurRepository.getReferenceById(form.getAuteurId()));
 
         if (form.getArgumentsId()!=null){
 

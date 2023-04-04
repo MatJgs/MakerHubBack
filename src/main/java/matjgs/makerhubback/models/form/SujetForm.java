@@ -18,6 +18,8 @@ public class SujetForm {
 
     private Set<Long> argumentsId;
 
+    private Long auteurId;
+
     public Sujet toEntity(){
         Sujet sujet = new Sujet();
 

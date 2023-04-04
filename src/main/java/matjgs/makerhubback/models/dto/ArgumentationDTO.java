@@ -12,12 +12,19 @@ public class ArgumentationDTO implements Serializable {
     private final LocalDate dateCreation;
     private final String argument;
     private final boolean avis;
+    private final UtilisateurDTO madeBy;
 
     public static ArgumentationDTO toDto(Argumentation entity){
         if( entity == null )
             return null;
 
-        return new ArgumentationDTO(entity.getId(), entity.getDateCreation(), entity.getArgument(), entity.isAvis());
+        return new ArgumentationDTO(
+                entity.getId(),
+                entity.getDateCreation(),
+                entity.getArgument(),
+                entity.isAvis(),
+                UtilisateurDTO.toDto(entity.getArgumentBy())
+        );
 
     }
 }

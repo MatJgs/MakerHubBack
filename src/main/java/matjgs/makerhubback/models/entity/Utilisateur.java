@@ -4,9 +4,13 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.HashSet;
+import java.util.Set;
+
 @Entity
 @Table(name = "\"user\"")
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+
 //@DiscriminatorColumn(name = "role")
 @Getter
 @Setter
@@ -27,4 +31,11 @@ public class Utilisateur {
 
     private String email;
     private String phone;
+
+    @OneToMany(mappedBy = "sujetBy")
+    private Set<Sujet> sujets = new HashSet<>();
+
+    @OneToMany(mappedBy = "argumentBy")
+    private Set<Argumentation> arguments = new HashSet<>();
+
 }

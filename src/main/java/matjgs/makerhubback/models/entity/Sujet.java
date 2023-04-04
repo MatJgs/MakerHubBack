@@ -27,10 +27,11 @@ public class Sujet {
     private String description;
 
 
-    @OneToMany
+    @OneToMany(mappedBy = "sujet")
     private Set<Argumentation> argumentations = new HashSet<>();
 
-//    @ManyToOne
-//    @JoinColumn(name = "made_by_id", nullable = false)
-//    private Utilisateur madeBy;
+
+    @ManyToOne
+    @JoinColumn(name = "utilisateur_id", nullable = false)
+    private Utilisateur sujetBy;
 }

@@ -5,6 +5,8 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.time.LocalDate;
+import java.util.LinkedHashSet;
+import java.util.Set;
 
 @Entity
 @Getter @Setter
@@ -26,6 +28,10 @@ public class Argumentation {
     private String argument;
 
     @ManyToOne
-    @JoinColumn(name = "auteur_id", nullable = false)
-    private Utilisateur auteurId;
+    @JoinColumn(name = "sujet_id", nullable = false)
+    private Sujet sujet;
+
+    @ManyToOne
+    @JoinColumn(name = "utilisateur_id", nullable = false)
+    private Utilisateur argumentBy;
 }
