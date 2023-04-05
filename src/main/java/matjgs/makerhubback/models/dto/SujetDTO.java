@@ -1,6 +1,7 @@
 package matjgs.makerhubback.models.dto;
 
 import lombok.Data;
+import matjgs.makerhubback.models.entity.Argumentation;
 import matjgs.makerhubback.models.entity.Sujet;
 
 import java.io.Serializable;
@@ -31,6 +32,29 @@ public class SujetDTO implements Serializable {
                         .map(ArgumentationDTO::toDto)
                         .collect(Collectors.toSet())
         );
+    }
+
+    @Data
+    public static class ArgumentationDTO {
+        private final Long id;
+        private final LocalDate dateCreation;
+        private final String argument;
+        private final boolean avis;
+        private final UtilisateurDTO madeBy;
+
+        public static ArgumentationDTO toDto(Argumentation entity){
+            if( entity == null )
+                return null;
+
+            return new ArgumentationDTO(
+                    entity.getId(),
+                    entity.getDateCreation(),
+                    entity.getArgument(),
+                    entity.isAvis(),
+                    UtilisateurDTO.toDto(entity.getArgumentBy())
+            );
+
+        }
     }
 
 }

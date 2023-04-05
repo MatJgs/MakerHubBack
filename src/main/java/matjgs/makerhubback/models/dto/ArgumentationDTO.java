@@ -13,6 +13,7 @@ public class ArgumentationDTO implements Serializable {
     private final String argument;
     private final boolean avis;
     private final UtilisateurDTO madeBy;
+    private final SujetDTO sujet;
 
     public static ArgumentationDTO toDto(Argumentation entity){
         if( entity == null )
@@ -23,7 +24,8 @@ public class ArgumentationDTO implements Serializable {
                 entity.getDateCreation(),
                 entity.getArgument(),
                 entity.isAvis(),
-                UtilisateurDTO.toDto(entity.getArgumentBy())
+                UtilisateurDTO.toDto(entity.getArgumentBy()),
+                SujetDTO.toDto(entity.getSujet())
         );
 
     }

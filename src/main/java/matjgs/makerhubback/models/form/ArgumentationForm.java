@@ -1,9 +1,9 @@
 package matjgs.makerhubback.models.form;
 
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 import matjgs.makerhubback.models.entity.Argumentation;
-import matjgs.makerhubback.models.entity.Sujet;
 
 import java.time.LocalDate;
 
@@ -12,8 +12,14 @@ public class ArgumentationForm {
     @NotBlank
     private String argument;
 
-    @NotBlank
-    private boolean avis;
+    @NotNull
+    private Boolean avis;
+
+    @NotNull
+    private Long auteurId;
+
+    @NotNull
+    private Long sujetId;
 
     public Argumentation toEntity(){
         Argumentation argumentation = new Argumentation();

@@ -1,10 +1,11 @@
 package matjgs.makerhubback.controller;
 
+import jakarta.validation.Valid;
 import matjgs.makerhubback.models.dto.ArgumentationDTO;
+import matjgs.makerhubback.models.form.ArgumentationForm;
+import matjgs.makerhubback.models.form.SujetForm;
 import matjgs.makerhubback.services.ArgumentationService;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -21,5 +22,10 @@ public class ArgumentationController {
     @GetMapping("/arguments")
     public List<ArgumentationDTO> getAll(){
         return argumentationService.getAll();
+    }
+
+    @PostMapping("/sujets/arguments/new/{id}")
+    public void create(@RequestBody @Valid ArgumentationForm form){
+        argumentationService.create(form);
     }
 }
