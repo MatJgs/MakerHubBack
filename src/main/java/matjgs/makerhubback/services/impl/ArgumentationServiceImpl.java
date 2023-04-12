@@ -1,8 +1,10 @@
 package matjgs.makerhubback.services.impl;
 
+import matjgs.makerhubback.exceptions.NotFoundException;
 import matjgs.makerhubback.models.dto.ArgumentationDTO;
 import matjgs.makerhubback.models.entity.Argumentation;
 import matjgs.makerhubback.models.entity.Sujet;
+import matjgs.makerhubback.models.entity.Utilisateur;
 import matjgs.makerhubback.models.form.ArgumentationForm;
 import matjgs.makerhubback.repository.ArgumentationRepository;
 import matjgs.makerhubback.repository.SujetRepository;
@@ -37,9 +39,12 @@ public class ArgumentationServiceImpl implements ArgumentationService {
     public void create(ArgumentationForm form) {
         Argumentation argumentation = form.toEntity();
 
-        argumentation.setArgumentBy(utilisateurRepository.getReferenceById(form.getAuteurId()));
+        Utilisateur p = utilisateurRepository.findByLogin(form.getUserLogin())
+                .orElseThrow( () -> new NotFoundException(Utilisateur.class, form.getUserLogin()) );
 
         argumentation.setSujet(sujetRepository.findById(form.getSujetId()).get());
+
+        argumentation.setArgumentBy(p);
 
         argumentationRepository.save(argumentation);
     }

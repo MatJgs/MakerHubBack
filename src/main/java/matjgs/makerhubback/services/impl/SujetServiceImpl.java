@@ -1,7 +1,9 @@
 package matjgs.makerhubback.services.impl;
 
+import matjgs.makerhubback.exceptions.NotFoundException;
 import matjgs.makerhubback.models.dto.SujetDTO;
 import matjgs.makerhubback.models.entity.Sujet;
+import matjgs.makerhubback.models.entity.Utilisateur;
 import matjgs.makerhubback.models.form.SujetForm;
 import matjgs.makerhubback.repository.ArgumentationRepository;
 import matjgs.makerhubback.repository.SujetRepository;
@@ -12,6 +14,7 @@ import org.springframework.stereotype.Service;
 import java.util.HashSet;
 import java.util.LinkedHashSet;
 import java.util.List;
+import java.util.Objects;
 
 @Service
 public class SujetServiceImpl implements SujetService {
@@ -41,12 +44,18 @@ public class SujetServiceImpl implements SujetService {
     @Override
     public void create(SujetForm form) {
         Sujet sujet = form.toEntity();
-        sujet.setSujetBy(utilisateurRepository.getReferenceById(form.getAuteurId()));
+
+        Utilisateur p = utilisateurRepository.findByLogin(form.getUserLogin())
+                .orElseThrow( () -> new NotFoundException(Utilisateur.class, form.getUserLogin()) );
+
+
+
         if (form.getArgumentsId()!=null){
             sujet.setArgumentations(
                 new HashSet<>(argumentationRepository.findAllById(form.getArgumentsId()))
             );
         }
+        sujet.setSujetBy(p);
         sujetRepository.save(sujet);
     }
 

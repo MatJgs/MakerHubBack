@@ -2,6 +2,7 @@ package matjgs.makerhubback.models.dto;
 
 import lombok.Data;
 import matjgs.makerhubback.models.entity.Argumentation;
+import matjgs.makerhubback.models.entity.Utilisateur;
 
 import java.io.Serializable;
 import java.time.LocalDate;
@@ -29,4 +30,5 @@ public class ArgumentationDTO implements Serializable {
         );
 
     }
+
 }

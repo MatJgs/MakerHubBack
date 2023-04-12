@@ -8,7 +8,7 @@ import java.io.Serializable;
 @Data
 public class UtilisateurDTO implements Serializable {
     private final Long id;
-//    private final String role;
+    private final String role;
     private final String firstName;
     private final String lastName;
     private final String email;
@@ -18,7 +18,7 @@ public class UtilisateurDTO implements Serializable {
             return null;
         return new UtilisateurDTO(
                 entity.getId(),
-//                entity.getRole(),
+                entity.getRole(),
                 entity.getFirstName(),
                 entity.getLastName(),
                 entity.getEmail()

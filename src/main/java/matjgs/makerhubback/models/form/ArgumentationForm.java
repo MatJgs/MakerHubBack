@@ -15,8 +15,8 @@ public class ArgumentationForm {
     @NotNull
     private Boolean avis;
 
-    @NotNull
-    private Long auteurId;
+    @NotBlank
+    private String userLogin;
 
     @NotNull
     private Long sujetId;

@@ -3,6 +3,7 @@ package matjgs.makerhubback.models.dto;
 import lombok.Data;
 import matjgs.makerhubback.models.entity.Argumentation;
 import matjgs.makerhubback.models.entity.Sujet;
+import matjgs.makerhubback.models.entity.Utilisateur;
 
 import java.io.Serializable;
 import java.time.LocalDate;
@@ -26,6 +27,7 @@ public class SujetDTO implements Serializable {
                 entity.getId(),
                 entity.getTitre(),
                 entity.getDescription(),
+
                 UtilisateurDTO.toDto(entity.getSujetBy()),
                 entity.getDateCreation(),
                 entity.getArgumentations().stream()
@@ -33,6 +35,7 @@ public class SujetDTO implements Serializable {
                         .collect(Collectors.toSet())
         );
     }
+
 
     @Data
     public static class ArgumentationDTO {
@@ -56,5 +59,7 @@ public class SujetDTO implements Serializable {
 
         }
     }
+
+
 
 }

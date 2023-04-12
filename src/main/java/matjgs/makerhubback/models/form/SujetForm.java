@@ -18,8 +18,8 @@ public class SujetForm {
     private String description;
 
     private Set<Long> argumentsId;
-    @NotNull
-    private Long auteurId;
+    @NotBlank
+    private String userLogin;
 
     public Sujet toEntity(){
         Sujet sujet = new Sujet();
