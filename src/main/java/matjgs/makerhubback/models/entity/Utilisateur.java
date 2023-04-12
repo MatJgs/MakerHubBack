@@ -3,25 +3,29 @@ package matjgs.makerhubback.models.entity;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
+import java.util.Collection;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Entity
 @Table(name = "\"user\"")
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-
-//@DiscriminatorColumn(name = "role")
+@DiscriminatorColumn(name = "role")
 @Getter
 @Setter
-public class Utilisateur {
+public class Utilisateur extends BaseEntity implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "utilisateur_id")
     private Long id;
 
-//    @Column(name = "role", nullable = false, insertable = false, updatable = false)
-//    private String role;
+    @Column(name = "role", nullable = false, insertable = false, updatable = false)
+    private String role;
     @Column(nullable = false, unique = true)
     private String login;
     @Column(nullable = false)
@@ -31,6 +35,33 @@ public class Utilisateur {
 
     private String email;
     private String phone;
+
+    private boolean enabled = true;
+
+
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return List.of(new SimpleGrantedAuthority("ROLE_"+role));
+    }
+
+    @Override
+    public String getUsername() {
+        return this.getLogin();
+    }
+
+    @Override
+    public boolean isAccountNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        return true;
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true;
+    }
 
     @OneToMany(mappedBy = "sujetBy")
     private Set<Sujet> sujets = new HashSet<>();

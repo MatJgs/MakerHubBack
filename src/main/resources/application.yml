@@ -12,6 +12,24 @@ spring:
     properties:
       hibernate:
         format_sql: true
+
+logging:
+  level:
+    org:
+      springframework:
+        jdbc:
+          datasource:
+            init: DEBUG
 springdoc:
   swagger-ui:
     path: /swagger
+
+app:
+  security:
+    jwt:
+      access-expires-at: 900_000 # 15 min
+      refresh-expires-at: 2_592_000_000 # 30 j
+      prefix: "Bearer "
+      auth-header: "authorization"
+      access-secret: ${JWT_SECRET}
+      refresh-secret: ${JWT_REFRESH_SECRET}

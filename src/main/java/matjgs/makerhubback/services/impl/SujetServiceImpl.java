@@ -41,11 +41,8 @@ public class SujetServiceImpl implements SujetService {
     @Override
     public void create(SujetForm form) {
         Sujet sujet = form.toEntity();
-
         sujet.setSujetBy(utilisateurRepository.getReferenceById(form.getAuteurId()));
-
         if (form.getArgumentsId()!=null){
-
             sujet.setArgumentations(
                 new HashSet<>(argumentationRepository.findAllById(form.getArgumentsId()))
             );
