@@ -1,7 +1,7 @@
 package matjgs.makerhubback.models.form;
 
 import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
+
 import lombok.Data;
 import matjgs.makerhubback.models.entity.Sujet;
 
@@ -26,7 +26,7 @@ public class SujetForm {
 
         sujet.setTitre(this.titre);
         sujet.setDescription(this.description);
-        sujet.setDateCreation(LocalDate.now());
+        sujet.setCreatedAt(LocalDate.now().atStartOfDay());
 
 
         return sujet;

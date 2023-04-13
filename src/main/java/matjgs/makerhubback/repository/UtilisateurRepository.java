@@ -1,7 +1,6 @@
 package matjgs.makerhubback.repository;
 
-import matjgs.makerhubback.models.entity.Sujet;
-import matjgs.makerhubback.models.entity.Utilisateur;
+import matjgs.makerhubback.models.entity.users.Utilisateur;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;

@@ -13,4 +13,7 @@ public interface SujetService {
 
     List<SujetDTO> getAll();
 
+    void cloture(Long id, String username);
+    void cacher(Long id,String username);
+
 }

@@ -1,7 +1,7 @@
 package matjgs.makerhubback.models.dto;
 
 import lombok.Data;
-import matjgs.makerhubback.models.entity.Utilisateur;
+import matjgs.makerhubback.models.entity.users.Utilisateur;
 
 import java.io.Serializable;
 

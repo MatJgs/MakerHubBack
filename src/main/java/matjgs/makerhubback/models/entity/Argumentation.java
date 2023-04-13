@@ -1,12 +1,15 @@
 package matjgs.makerhubback.models.entity;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
 import lombok.Getter;
 import lombok.Setter;
+import matjgs.makerhubback.models.entity.users.Utilisateur;
+import org.hibernate.validator.constraints.Length;
 
 import java.time.LocalDate;
-import java.util.LinkedHashSet;
-import java.util.Set;
+
 
 @Entity
 @Getter @Setter

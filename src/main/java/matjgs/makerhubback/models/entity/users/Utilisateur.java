@@ -1,8 +1,11 @@
-package matjgs.makerhubback.models.entity;
+package matjgs.makerhubback.models.entity.users;
 
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+import matjgs.makerhubback.models.entity.Argumentation;
+import matjgs.makerhubback.models.entity.BaseEntity;
+import matjgs.makerhubback.models.entity.Sujet;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
