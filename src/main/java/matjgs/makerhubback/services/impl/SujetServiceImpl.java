@@ -20,15 +20,13 @@ import java.util.Objects;
 public class SujetServiceImpl implements SujetService {
 
     private final SujetRepository sujetRepository;
-    private final ArgumentationRepository argumentationRepository;
 
     private final UtilisateurRepository utilisateurRepository;
 
     public SujetServiceImpl(SujetRepository sujetRepository,
-                            ArgumentationRepository argumentationRepository,
                             UtilisateurRepository utilisateurRepository) {
         this.sujetRepository = sujetRepository;
-        this.argumentationRepository = argumentationRepository;
+
         this.utilisateurRepository=utilisateurRepository;
     }
 
@@ -37,7 +35,7 @@ public class SujetServiceImpl implements SujetService {
 
         return sujetRepository.findById(id)
                 .map(SujetDTO::toDto)
-                .orElseThrow( () -> new RuntimeException("not found") ); // TODO: préciser
+                .orElseThrow( () -> new NotFoundException(Sujet.class,sujetRepository) );
 
     }
 
@@ -50,13 +48,6 @@ public class SujetServiceImpl implements SujetService {
         Utilisateur p = utilisateurRepository.findByLogin(form.getUserLogin())
                 .orElseThrow( () -> new NotFoundException(Utilisateur.class, form.getUserLogin()) );
 
-
-
-        if (form.getArgumentsId()!=null){
-            sujet.setArgumentations(
-                new HashSet<>(argumentationRepository.findAllById(form.getArgumentsId()))
-            );
-        }
         sujet.setSujetBy(p);
         sujetRepository.save(sujet);
     }
@@ -68,13 +59,14 @@ public class SujetServiceImpl implements SujetService {
                 .toList();
     }
 
+
+
+
     @Override
     public void cloture(Long id,String username) {
         Utilisateur p = utilisateurRepository.findByLogin(username)
             .orElseThrow( () -> new NotFoundException(Utilisateur.class, username) );
         if (Objects.equals(p.getRole(), "TECHNOBEL") ){
-
-
             Sujet sujet = sujetRepository.findById(id).orElseThrow(() -> new NotFoundException(Sujet.class, id));
             if (sujet.isEnabled())
                 sujet.setEnabled(false);
@@ -89,8 +81,6 @@ public class SujetServiceImpl implements SujetService {
         Utilisateur p = utilisateurRepository.findByLogin(username)
                 .orElseThrow( () -> new NotFoundException(Utilisateur.class, username) );
         if (Objects.equals(p.getRole(), "TECHNOBEL") ) {
-
-
             Sujet sujet = sujetRepository.findById(id).orElseThrow(() -> new NotFoundException(Sujet.class, id));
 
             if (sujet.isHidden())

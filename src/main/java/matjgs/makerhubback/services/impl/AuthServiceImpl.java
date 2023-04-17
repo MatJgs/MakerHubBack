@@ -25,7 +25,7 @@ public class AuthServiceImpl implements AuthService {
     public AuthDTO login(LoginForm form) {
         // create an Authentication object with the user's credentials
         Authentication auth = new UsernamePasswordAuthenticationToken(form.getUsername(), form.getPassword());
-        form.setPassword(null); // clear password for security reasons
+//        form.setPassword(null); // clear password for security reasons
 
         // authenticate the user's credentials with the AuthenticationManager
         auth = authManager.authenticate(auth); // if invalid credentials, AuthenticationException is thrown.

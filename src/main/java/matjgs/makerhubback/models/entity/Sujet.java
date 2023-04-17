@@ -1,16 +1,14 @@
 package matjgs.makerhubback.models.entity;
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.Max;
-import jakarta.validation.constraints.Min;
+
 import lombok.Getter;
 import lombok.Setter;
 import matjgs.makerhubback.models.entity.users.Utilisateur;
 import org.hibernate.validator.constraints.Length;
-import org.hibernate.validator.internal.constraintvalidators.hv.LengthValidator;
 
-import java.time.LocalDate;
 import java.util.HashSet;
+
 import java.util.Set;
 
 @Entity
@@ -21,12 +19,12 @@ public class Sujet extends BaseEntity{
     @Column(name="sujet_id",nullable = false)
     private Long id;
 
-
-
     @Column(name = "titre",nullable = false)
+    @Length(min = 5,max = 50)
     private String titre;
 
     @Column(name = "description",nullable = false)
+    @Length(min = 10,max = 300)
     private String description;
 
 

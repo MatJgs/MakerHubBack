@@ -7,12 +7,12 @@ INSERT INTO "user" ("role", created_at,email,first_name,last_name,"login","passw
 
 
 INSERT INTO sujet (created_at,titre,description,utilisateur_id,enabled,hidden) VALUES ('31/12/2022','CJIP: les entreprises ','CJIP : depuis 2016, les entreprises peuvent conclure un accord avec la justice quand elles sont poursuivies pour corruption ou fraude. Bonne idée ?',2,false,true);
-INSERT INTO sujet (created_at,titre,description,utilisateur_id,enabled,hidden) VALUES ('7/03/2022','Peut-on dire au revoir aux bouteilles en plastique ?','Chaque minute, un million de bouteilles en plastique sont achetées dans le monde. Elles font partie de notre quotidien, mais peut-on s’en passer ?',1,false,false);
+INSERT INTO sujet (created_at,titre,description,utilisateur_id,enabled,hidden) VALUES ('7/03/2022','Peut-on dire au revoir aux bouteilles en plastique','Chaque minute, un million de bouteilles en plastique sont achetées dans le monde. Elles font partie de notre quotidien, mais peut-on s’en passer ?',1,false,false);
 INSERT INTO sujet (created_at,titre,description,utilisateur_id,enabled,hidden) VALUES ('7/03/2022','La retraite plus tôt','Peut-on dire au revoir aux bouteilles en plastique ?',1,true,false);
 
-INSERT INTO argumentation(argument,avis,date_creation,sujet_id,utilisateur_id)VALUES ('C’est une bonne idée parce que voilà',true,now(),1,3);
+INSERT INTO argumentation(argument,avis,created_at,sujet_id,utilisateur_id)VALUES ('C’est une bonne idée parce que voilà',true,now(),1,3);
 
-INSERT INTO argumentation(argument,avis,date_creation,sujet_id,utilisateur_id)VALUES ('Je pense qu’on peut s’en séparer',true,now(),3,4);
+INSERT INTO argumentation(argument,avis,created_at,sujet_id,utilisateur_id)VALUES ('Je pense qu’on peut s’en séparer',true,now(),3,4);
 
 
 

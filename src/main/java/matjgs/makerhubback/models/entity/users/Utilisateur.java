@@ -72,4 +72,8 @@ public class Utilisateur extends BaseEntity implements UserDetails {
     @OneToMany(mappedBy = "argumentBy")
     private Set<Argumentation> arguments = new HashSet<>();
 
+
+
+
+
 }

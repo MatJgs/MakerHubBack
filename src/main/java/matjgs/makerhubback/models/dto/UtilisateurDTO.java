@@ -4,6 +4,7 @@ import lombok.Data;
 import matjgs.makerhubback.models.entity.users.Utilisateur;
 
 import java.io.Serializable;
+import java.util.Set;
 
 @Data
 public class UtilisateurDTO implements Serializable {
@@ -12,6 +13,7 @@ public class UtilisateurDTO implements Serializable {
     private final String firstName;
     private final String lastName;
     private final String email;
+
 
     public static UtilisateurDTO toDto(Utilisateur entity){
         if(entity==null)
@@ -22,6 +24,7 @@ public class UtilisateurDTO implements Serializable {
                 entity.getFirstName(),
                 entity.getLastName(),
                 entity.getEmail()
+
         );
     }
 

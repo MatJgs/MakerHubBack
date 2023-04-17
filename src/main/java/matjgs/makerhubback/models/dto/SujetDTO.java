@@ -21,6 +21,7 @@ public class SujetDTO implements Serializable {
     private final boolean enable;
     private final boolean hidden;
 
+
     public static SujetDTO toDto(Sujet entity){
         if( entity == null )
             return null;
@@ -37,6 +38,7 @@ public class SujetDTO implements Serializable {
                         .collect(Collectors.toSet()),
                 entity.isEnabled(),
                 entity.isHidden()
+
         );
     }
 
@@ -55,7 +57,7 @@ public class SujetDTO implements Serializable {
 
             return new ArgumentationDTO(
                     entity.getId(),
-                    entity.getDateCreation(),
+                    entity.getCreatedAt().toLocalDate(),
                     entity.getArgument(),
                     entity.isAvis(),
                     UtilisateurDTO.toDto(entity.getArgumentBy())

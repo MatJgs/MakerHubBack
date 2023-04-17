@@ -1,5 +1,6 @@
 package matjgs.makerhubback.controller;
 
+import jakarta.annotation.security.RolesAllowed;
 import matjgs.makerhubback.models.dto.AuthDTO;
 import matjgs.makerhubback.models.form.LoginForm;
 import matjgs.makerhubback.services.AuthService;
@@ -17,6 +18,7 @@ public class AuthController {
     }
 
     @PostMapping("/login")
+    @RolesAllowed({"ROLE_TECHNOBEL","ROLE_STUDENT","ROLE_FORMATEUR"})
     public AuthDTO login(@RequestBody LoginForm form){
         return authService.login(form);
     }

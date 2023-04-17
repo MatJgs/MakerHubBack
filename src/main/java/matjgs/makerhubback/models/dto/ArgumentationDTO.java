@@ -22,7 +22,7 @@ public class ArgumentationDTO implements Serializable {
 
         return new ArgumentationDTO(
                 entity.getId(),
-                entity.getDateCreation(),
+                entity.getCreatedAt().toLocalDate(),
                 entity.getArgument(),
                 entity.isAvis(),
                 UtilisateurDTO.toDto(entity.getArgumentBy()),
