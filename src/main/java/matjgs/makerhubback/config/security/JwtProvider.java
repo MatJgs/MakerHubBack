@@ -74,8 +74,8 @@ public class JwtProvider {
                 return false;
 
             // (4, Les roles ne sont plus bon) Verifier les roles n'est pas conventionnel
-            String tokenRole = jwt.getClaim("roles").asString();
-            return Objects.equals(user.getRole(),  tokenRole);
+            String tokenRole = jwt.getClaim("role").asString();
+            return Objects.equals(user.getAuthorities().stream().map(GrantedAuthority::getAuthority).findFirst().orElse(null),  tokenRole);
         }
         catch (JWTVerificationException | UsernameNotFoundException ex ){
             return false;

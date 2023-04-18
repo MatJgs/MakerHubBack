@@ -5,8 +5,7 @@ import jakarta.validation.Valid;
 import matjgs.makerhubback.models.dto.SujetDTO;
 import matjgs.makerhubback.models.form.SujetForm;
 import matjgs.makerhubback.services.SujetService;
-import org.springframework.boot.autoconfigure.neo4j.Neo4jProperties;
-import org.springframework.security.core.Authentication;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -23,12 +22,14 @@ public class SujetController {
 
     @GetMapping("/sujets/{id}")
     @RolesAllowed({"TECHNOBEL","STUDENT","FORMATEUR"})
+
     public SujetDTO getOne(@PathVariable Long id) {
         return sujetService.getOne(id);
     }
 
     @GetMapping("/sujets")
     @RolesAllowed({"TECHNOBEL","STUDENT","FORMATEUR"})
+
     public List<SujetDTO> getAll(){
         return sujetService.getAll();
     }
@@ -44,7 +45,7 @@ public class SujetController {
     public void cloture(@PathVariable Long id, @RequestBody String username) {sujetService.cloture(id, username);}
 
     @PostMapping("/sujets/cacher/{id}")
-    @RolesAllowed({"TECHNOBEL","STUDENT","FORMATEUR"})
+    @RolesAllowed({"TECHNOBEL"})
     public void cacher(@PathVariable Long id, @RequestBody String username) {sujetService.cacher(id, username);}
 
 }

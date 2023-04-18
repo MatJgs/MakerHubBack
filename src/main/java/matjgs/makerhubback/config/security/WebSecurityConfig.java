@@ -15,7 +15,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 
 @Configuration
 @EnableWebSecurity
-@EnableMethodSecurity
+@EnableMethodSecurity(jsr250Enabled = true)
 public class WebSecurityConfig {
 
     @Bean
@@ -32,6 +32,7 @@ public class WebSecurityConfig {
 
         http.authorizeHttpRequests(
                 registry ->
+
                         registry.anyRequest().permitAll()
         );
         return http.build();

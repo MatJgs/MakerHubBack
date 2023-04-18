@@ -21,13 +21,13 @@ public class ArgumentationController {
     }
 
     @GetMapping("/arguments")
-    @RolesAllowed({"ROLE_TECHNOBEL","ROLE_STUDENT","ROLE_FORMATEUR"})
+    @RolesAllowed({"TECHNOBEL","STUDENT","FORMATEUR"})
     public List<ArgumentationDTO> getAll(){
         return argumentationService.getAll();
     }
 
     @PostMapping("/sujets/arguments/new/{id}")
-    @RolesAllowed({"ROLE_TECHNOBEL","ROLE_STUDENT","ROLE_FORMATEUR"})
+    @RolesAllowed({"TECHNOBEL","STUDENT","FORMATEUR"})
     public void create(@RequestBody @Valid ArgumentationForm form){
         argumentationService.create(form);
     }
